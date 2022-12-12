@@ -4,8 +4,10 @@ import com.peter.weedingplanner.customer.Model.Customer;
 import com.peter.weedingplanner.customer.repositories.CustomerRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.stereotype.Component;
 
 @AllArgsConstructor
+@Component
 public class Bootstrap implements CommandLineRunner {
 
     private final CustomerRepository customerRepository;
@@ -13,6 +15,7 @@ public class Bootstrap implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
+        System.out.println("-----Init from Bootstrap !! ");
 
 
         Customer nelly = Customer.builder()
@@ -44,5 +47,7 @@ public class Bootstrap implements CommandLineRunner {
         customerRepository.save(soraya);
         customerRepository.save(naima);
         customerRepository.save(zouria);
+
+        System.out.println(customerRepository.count());
     }
 }
