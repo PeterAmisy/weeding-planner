@@ -2,9 +2,13 @@ package com.peter.weedingplanner.bootstrap;
 
 import com.peter.weedingplanner.customer.Model.Customer;
 import com.peter.weedingplanner.customer.repositories.CustomerRepository;
+import com.peter.weedingplanner.project.model.Project;
+import com.peter.weedingplanner.project.repository.ProjectRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+
+import java.time.LocalDate;
 
 
 @Component
@@ -14,6 +18,7 @@ public class Bootstrap implements CommandLineRunner {
 
 
     private final CustomerRepository customerRepository;
+    private final ProjectRepository projectRepository;
 
 
     @Override
@@ -52,6 +57,27 @@ public class Bootstrap implements CommandLineRunner {
         customerRepository.save(naima);
         customerRepository.save(zouria);
 
-        System.out.println(customerRepository.count());
+        System.out.println("customer saved "+customerRepository.count());
+
+        Project nellyWeeding = Project.builder()
+                .id(1L)
+                .name("Nelly's Weeding")
+                .startDate(LocalDate.of(2023, 1, 1))
+                .endDate(LocalDate.of(2023, 11, 10))
+                .build();
+
+        Project nellyTraditionalWeeding = Project.builder()
+                .id(2L)
+                .name("Oukoumbi")
+                .startDate(LocalDate.of(2023, 1, 1))
+                .endDate(LocalDate.of(2023, 12, 12))
+                .build();
+
+        projectRepository.save(nellyWeeding);
+        projectRepository.save(nellyTraditionalWeeding);
+
+        System.out.println("project saved "+projectRepository.count());
+
+
     }
 }
