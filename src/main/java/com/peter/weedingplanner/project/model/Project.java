@@ -1,9 +1,7 @@
 package com.peter.weedingplanner.project.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.peter.weedingplanner.customer.Model.Customer;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -25,4 +23,7 @@ public class Project {
     private String name;
     private LocalDate startDate;
     private LocalDate endDate;
+
+    @OneToOne
+    private Customer customer;
 }
