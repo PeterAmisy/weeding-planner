@@ -1,12 +1,14 @@
 package com.peter.weedingplanner.customer.Model;
 
 import lombok.AllArgsConstructor;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 @AllArgsConstructor
+@Tag("model")
 class CustomerTest {
 
 

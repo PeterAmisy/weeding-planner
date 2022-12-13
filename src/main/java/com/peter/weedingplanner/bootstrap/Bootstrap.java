@@ -6,11 +6,15 @@ import lombok.AllArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-@AllArgsConstructor
+
 @Component
+@AllArgsConstructor
 public class Bootstrap implements CommandLineRunner {
 
+
+
     private final CustomerRepository customerRepository;
+
 
     @Override
     public void run(String... args) throws Exception {

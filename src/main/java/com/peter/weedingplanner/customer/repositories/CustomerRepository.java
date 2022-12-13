@@ -1,7 +1,12 @@
 package com.peter.weedingplanner.customer.repositories;
 
 import com.peter.weedingplanner.customer.Model.Customer;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
 
-public interface CustomerRepository extends JpaRepository<Customer, Long> {
+import java.util.Optional;
+
+public interface CustomerRepository extends CrudRepository<Customer, Long> {
+    Optional<Customer> findById(Customer id);
+
+
 }
