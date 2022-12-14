@@ -47,9 +47,9 @@ public class PrestataireController {
     @PutMapping(path = "/{prestataireId}")
     public void updateStudent(@PathVariable("prestataireId") Long prestataireId,
                               @RequestBody Prestataire prestataire) {
-        if(prestataireId == null || prestataire.getId()== null){
+        if (prestataireId == null || prestataire.getId() == null) {
             throw new IllegalArgumentException("you need to provide an id");
-        }else {
+        } else {
             prestataireService.udpateProject(prestataireId, prestataire);
         }
     }
