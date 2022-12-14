@@ -1,9 +1,7 @@
 package com.peter.weedingplanner.customer.Model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.peter.weedingplanner.project.model.Project;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,4 +20,6 @@ public class Customer {
     private String firstName;
     private String lastName;
     private String email;
+    @OneToOne(mappedBy = "customer")
+    private Project project;
 }

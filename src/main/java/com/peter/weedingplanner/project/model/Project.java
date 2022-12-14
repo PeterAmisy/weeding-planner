@@ -24,6 +24,7 @@ public class Project {
     private LocalDate startDate;
     private LocalDate endDate;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "customer_id", referencedColumnName = "id")
     private Customer customer;
 }
