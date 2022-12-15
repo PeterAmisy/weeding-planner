@@ -1,7 +1,7 @@
 package com.peter.weedingplanner.customer.services;
 
 import com.peter.weedingplanner.customer.Model.Customer;
-import com.peter.weedingplanner.customer.repositories.CustomerRepository;
+import com.peter.weedingplanner.customer.repository.CustomerRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +15,7 @@ public class CustomerService {
     private final CustomerRepository customerRepository;
 
     public List<Customer> getAllCustomer() {
-        return (List<Customer>) customerRepository.findAll();
+        return customerRepository.findAll();
     }
 
     public Optional<Customer> getCustomerById(Long id) {
@@ -31,6 +31,10 @@ public class CustomerService {
         }
     }
 
+    public Customer findCustomerByEmail(Customer customer) {
+        return customerRepository.findCustomerByEmail(customer);
+    }
+
 
     public void deleteCustomer(Long customerId) {
         customerRepository.deleteById(customerId);
@@ -38,14 +42,14 @@ public class CustomerService {
 
     public void udpateCustomer(Long customerId, Customer customer) {
         boolean existsById = customerRepository.existsById(customerId);
-        if(existsById){
+        if (existsById) {
             customerRepository.save(Customer.builder()
                     .id(customerId)
                     .email(customer.getEmail())
                     .firstName(customer.getFirstName())
                     .lastName(customer.getLastName())
                     .build());
-        }else{
+        } else {
             throw new RuntimeException("Id is not valid, please check your id");
         }
     }

@@ -7,7 +7,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @AllArgsConstructor
 @Slf4j
@@ -20,8 +19,8 @@ public class ProjectService {
         return (List<Project>) projectRepository.findAll();
     }
 
-    public Optional<Project> getProjectById(Long id) {
-        return projectRepository.findById(id);
+    public Project getProjectById(Long id) {
+        return projectRepository.getById(id);
     }
 
     public void saveProject(Project project) {

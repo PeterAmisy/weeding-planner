@@ -11,24 +11,37 @@ import java.util.Optional;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping({"", "/"})
 @Slf4j
+@RequestMapping("/api/v1/customer")///api/v1/customer/1/
 public class CustomerController {
 
     private final CustomerService customerService;
 
-    @GetMapping("/customers")
+    @GetMapping()
     public List<Customer> getAllCustomer() {
         log.info("start getting customers...");
         List<Customer> customerList = customerService.getAllCustomer();
         return customerList;
     }
 
-    @GetMapping("{customerId}")
+    @GetMapping({"{customerId}/"})
     public Optional<Customer> getCustomerById(@PathVariable("customerId") Long id) {
         log.info("getting customer by his/her Id");
+        try {
+            return customerService.getCustomerById(id);
+        } catch (IllegalArgumentException e) {
+            e.getStackTrace();
+        } finally {
+            log.info("not able to get the information");
+        }
+
         return customerService.getCustomerById(id);
 
+    }
+
+    @GetMapping("{customerEmail}")
+    public Customer findCustomerByEmail(@PathVariable("customerEmail") Customer customer) {
+        return customerService.findCustomerByEmail(customer);
     }
 
     @PostMapping
@@ -42,8 +55,8 @@ public class CustomerController {
     }
 
     @PutMapping(path = "{customerId}")
-    public void updateStudent(@PathVariable("customerId") Long customerId,
-                              @RequestBody Customer customer) {
+    public void updateCustomer(@PathVariable("customerId") Long customerId,
+                               @RequestBody Customer customer) {
         customerService.udpateCustomer(customerId, customer);
     }
 

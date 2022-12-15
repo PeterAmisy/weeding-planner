@@ -7,12 +7,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @AllArgsConstructor
 @Slf4j
-@RequestMapping("/projects")
+@RequestMapping("api/v1/project")
 public class ProjectController {
 
     private final ProjectService projectService;
@@ -24,8 +23,8 @@ public class ProjectController {
         return projectList;
     }
 
-    @GetMapping("/{projectId}")
-    public Optional<Project> getProjectById(@PathVariable("projectId") Long id) {
+    @GetMapping("{projectId}/")
+    public Project getProjectById(@PathVariable("projectId") Long id) {
         log.info("getting project by his/her Id");
         return projectService.getProjectById(id);
 
@@ -36,17 +35,17 @@ public class ProjectController {
         projectService.saveProject(project);
     }
 
-    @DeleteMapping("/{projectId}")
+    @DeleteMapping("{projectId}/")
     public void deleteCustomer(@PathVariable("projectId") Long projectId) {
         projectService.deleteProject(projectId);
     }
 
-    @PutMapping(path = "/{projectId}")
+    @PutMapping(path = "{projectId}/")
     public void updateStudent(@PathVariable("projectId") Long projectId,
                               @RequestBody Project project) {
-        if(projectId == null || project.getId()== null){
+        if (projectId == null || project.getId() == null) {
             throw new IllegalArgumentException("you need to provide an id");
-        }else {
+        } else {
             projectService.udpateProject(projectId, project);
         }
 

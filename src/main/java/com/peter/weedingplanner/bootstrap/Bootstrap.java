@@ -1,7 +1,7 @@
 package com.peter.weedingplanner.bootstrap;
 
 import com.peter.weedingplanner.customer.Model.Customer;
-import com.peter.weedingplanner.customer.repositories.CustomerRepository;
+import com.peter.weedingplanner.customer.repository.CustomerRepository;
 import com.peter.weedingplanner.project.model.Project;
 import com.peter.weedingplanner.project.repository.ProjectRepository;
 import lombok.AllArgsConstructor;
@@ -14,7 +14,6 @@ import java.time.LocalDate;
 @Component
 @AllArgsConstructor
 public class Bootstrap implements CommandLineRunner {
-
 
 
     private final CustomerRepository customerRepository;
@@ -57,7 +56,7 @@ public class Bootstrap implements CommandLineRunner {
         customerRepository.save(naima);
         customerRepository.save(zouria);
 
-        System.out.println("customer saved "+customerRepository.count());
+        System.out.println("customer saved " + customerRepository.count());
 
         Project nellyWeeding = Project.builder()
                 .id(1L)
@@ -76,7 +75,7 @@ public class Bootstrap implements CommandLineRunner {
         projectRepository.save(nellyWeeding);
         projectRepository.save(nellyTraditionalWeeding);
 
-        System.out.println("project saved "+projectRepository.count());
+        System.out.println("project saved " + projectRepository.count());
 
 
     }
